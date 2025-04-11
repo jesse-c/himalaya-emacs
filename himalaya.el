@@ -49,6 +49,16 @@
   :type '(file :must-match t)
   :group 'himalaya)
 
+(defcustom himalaya-evil-enable-integration nil
+  "Whether to enable Evil integration in Himalaya.
+When non-nil, evil keybindings will be set up for Himalaya modes."
+  :type 'boolean
+  :group 'himalaya)
+
+(when (and (featurep 'evil) himalaya-evil-enable-integration)
+  (require 'himalaya-evil)
+  (himalaya-evil-setup))
+
 (defun himalaya--update-mode-line ()
   "Update the mode line with the current account, folder and
 envelope listing page."
