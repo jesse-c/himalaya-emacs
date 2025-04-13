@@ -55,9 +55,19 @@ When non-nil, evil keybindings will be set up for Himalaya modes."
   :type 'boolean
   :group 'himalaya)
 
+(defcustom himalaya-transient-enable-integration nil
+  "Whether to enable Transient menus in Himalaya.
+When non-nil, transient menus will be set up for Himalaya modes."
+  :type 'boolean
+  :group 'himalaya)
+
 (when (and (featurep 'evil) himalaya-evil-enable-integration)
   (require 'himalaya-evil)
   (himalaya-evil-setup))
+
+(when (and (featurep 'transient) himalaya-transient-enable-integration)
+  (require 'himalaya-transient)
+  (himalaya-transient-setup))
 
 (defun himalaya--update-mode-line ()
   "Update the mode line with the current account, folder and
