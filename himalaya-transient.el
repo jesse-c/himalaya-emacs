@@ -76,6 +76,7 @@
    [("r" "Reply" himalaya-reply-to-current-message)
     ("f" "Forward" himalaya-forward-current-message)]
    [("R" "View raw" himalaya-read-current-message-raw)
+    ("H" "View HTML" himalaya-read-current-message-html)
     ("a" "Download attachments" himalaya-download-current-attachments)]
    [("q" "Quit" kill-current-buffer)]])
 
@@ -90,6 +91,7 @@
    [("r" "Reply" himalaya-reply-to-current-message)
     ("f" "Forward" himalaya-forward-current-message)]
    [("R" "View formatted" himalaya-read-current-message-plain)
+    ("H" "View HTML" himalaya-read-current-message-html)
     ("a" "Download attachments" himalaya-download-current-attachments)]
    [("q" "Quit" kill-current-buffer)]])
 
