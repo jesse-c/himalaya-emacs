@@ -76,6 +76,7 @@
   "C" 'himalaya-copy-marked-messages
   "M" 'himalaya-move-marked-messages
   "a" 'himalaya-download-marked-attachments
+  "s" 'himalaya-mark-unread-envelope
 
   ;; Other
   "e" 'himalaya-expunge-folder
@@ -87,6 +88,7 @@
   "q" 'kill-current-buffer
   "R" 'himalaya-read-current-message-raw
   "r" 'himalaya-reply-to-current-message
+  "M" 'himalaya-move-current-message
   "f" 'himalaya-forward-current-message
   "n" 'himalaya-next-message
   "p" 'himalaya-prev-message)
@@ -96,6 +98,7 @@
   "q" 'kill-current-buffer
   "R" 'himalaya-read-current-message-raw
   "r" 'himalaya-reply-to-current-message
+  "M" 'himalaya-move-current-message
   "f" 'himalaya-forward-current-message
   "n" 'himalaya-next-message
   "p" 'himalaya-prev-message)

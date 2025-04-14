@@ -369,6 +369,42 @@ point) from current folder of current account."
        (set-buffer-modified-p nil)
        (kill-current-buffer)))))
 
+(defun himalaya-move-current-message ()
+  "Move the current message from current folder of current account to selected folder."
+  (interactive)
+  (himalaya--pick-folder
+   "Move to folder: "
+   (lambda (folder)
+     (himalaya--move-messages
+      himalaya-id
+      folder
+      (lambda (status)
+        (message "%s" (string-trim status))
+        (kill-current-buffer)
+        (himalaya-list-envelopes))))))
+
+(defun himalaya-delete-current-message ()
+  "Delete the current message from current folder of current account."
+  (interactive)
+  (when (y-or-n-p (format "Delete message %s? " himalaya-id))
+    (himalaya--delete-messages
+     himalaya-id
+     (lambda (status)
+       (message "%s" (string-trim status))
+       (kill-current-buffer)
+       (himalaya-list-envelopes)))))
+
+(defun himalaya-mark-unread-current-message ()
+  "Remove the 'Seen' flag from the current message, marking it as unread."
+  (interactive)
+  (when (y-or-n-p (format "Mark message %s as unread? " himalaya-id))
+    (himalaya--remove-flag
+     himalaya-id
+     "Seen"
+     (lambda (status)
+       (message "%s" (string-trim status))
+       (himalaya-list-envelopes)))))
+
 (defvar himalaya-read-message-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "a") #'himalaya-download-current-attachments)
@@ -379,6 +415,9 @@ point) from current folder of current account."
     (define-key map (kbd "n") #'himalaya-next-message)
     (define-key map (kbd "p") #'himalaya-prev-message)
     (define-key map (kbd "h") #'himalaya-read-current-message-html)
+    (define-key map (kbd "M") #'himalaya-move-current-message)
+    (define-key map (kbd "D") #'himalaya-delete-current-message)
+    (define-key map (kbd "s") #'himalaya-mark-unread-current-message)
     map))
 
 (define-derived-mode himalaya-read-message-mode message-mode "Himalaya-Read"
@@ -395,6 +434,8 @@ point) from current folder of current account."
     (define-key map (kbd "n") #'himalaya-next-message)
     (define-key map (kbd "p") #'himalaya-prev-message)
     (define-key map (kbd "h") #'himalaya-read-current-message-html)
+    (define-key map (kbd "M") #'himalaya-move-current-message)
+    (define-key map (kbd "s") #'himalaya-mark-unread-current-message)
     map))
 
 (define-derived-mode himalaya-read-message-raw-mode message-mode "Himalaya-Read-Raw"

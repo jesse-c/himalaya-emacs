@@ -167,6 +167,20 @@ given QUERY."
   (himalaya--update-mode-line)
   (revert-buffer))
 
+(defun himalaya-mark-unread-envelope ()
+  "Remove the 'Seen' flag from the envelope at point, marking it as unread."
+  (interactive)
+  (let* ((ids (or himalaya-marked-ids (list (tabulated-list-get-id))))
+         (subject (substring-no-properties (elt (tabulated-list-get-entry) 2))))
+    (when (y-or-n-p (format "Mark message(s) %s as unread? " (string-join ids ", ")))
+      (himalaya--remove-flag
+       ids
+       "Seen"
+       (lambda (status)
+         (message "%s" (string-trim status))
+         (himalaya-unmark-all-envelopes t)
+         (revert-buffer))))))
+
 (defvar himalaya-list-envelopes-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c a"  ) #'himalaya-switch-account)
@@ -190,6 +204,7 @@ given QUERY."
     (define-key map (kbd "M"      ) #'himalaya-move-marked-messages)
     (define-key map (kbd "D"      ) #'himalaya-delete-marked-messages)
     (define-key map (kbd "a"      ) #'himalaya-download-marked-attachments)
+    (define-key map (kbd "s"      ) #'himalaya-mark-unread-envelope)
     map))
 
 (define-derived-mode himalaya-list-envelopes-mode tabulated-list-mode "Himalaya-Envelopes"

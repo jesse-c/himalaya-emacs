@@ -62,7 +62,8 @@
     ("C" "Copy marked" himalaya-copy-marked-messages)]
    [("M" "Move marked" himalaya-move-marked-messages)
     ("a" "Download attachments" himalaya-download-marked-attachments)]
-   [("e" "Expunge folder" himalaya-expunge-folder)
+   [("s" "Mark unread" himalaya-mark-unread-envelope)
+    ("e" "Expunge folder" himalaya-expunge-folder)
     ("q" "Quit" kill-current-buffer)]])
 
 ;;;###autoload
@@ -78,7 +79,10 @@
    [("R" "View raw" himalaya-read-current-message-raw)
     ("H" "View HTML" himalaya-read-current-message-html)
     ("a" "Download attachments" himalaya-download-current-attachments)]
-   [("q" "Quit" kill-current-buffer)]])
+   [("M" "Move to folder" himalaya-move-current-message)
+    ("D" "Delete message" himalaya-delete-current-message)
+    ("s" "Mark unread" himalaya-mark-unread-current-message)
+    ("q" "Quit" kill-current-buffer)]])
 
 ;;;###autoload
 (transient-define-prefix himalaya-read-message-raw-transient-menu ()
@@ -93,7 +97,10 @@
    [("R" "View formatted" himalaya-read-current-message-plain)
     ("H" "View HTML" himalaya-read-current-message-html)
     ("a" "Download attachments" himalaya-download-current-attachments)]
-   [("q" "Quit" kill-current-buffer)]])
+   [("M" "Move to folder" himalaya-move-current-message)
+    ("D" "Delete message" himalaya-delete-current-message)
+    ("s" "Mark unread" himalaya-mark-unread-current-message)
+    ("q" "Quit" kill-current-buffer)]])
 
 ;;;###autoload
 (defun himalaya-transient-setup ()
