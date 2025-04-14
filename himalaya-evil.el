@@ -55,6 +55,7 @@
   "f" 'himalaya-list-envelopes-next-page
   "b" 'himalaya-list-envelopes-prev-page
   "J" 'himalaya-list-envelopes-at-page
+  "n" 'himalaya-list-envelopes
   "gg" 'beginning-of-buffer
   "G" 'end-of-buffer
 

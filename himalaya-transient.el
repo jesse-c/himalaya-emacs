@@ -42,7 +42,8 @@
     ("k" "Previous line" previous-line)]
    [("J" "Go to page" himalaya-list-envelopes-at-page)
     ("f" "Next page" himalaya-list-envelopes-next-page)
-    ("b" "Previous page" himalaya-list-envelopes-prev-page)]]
+    ("b" "Previous page" himalaya-list-envelopes-prev-page)]
+   [("n" "Refresh page" himalaya-list-envelopes)]]
 
   ["Actions"
    [("RET" "Read message" himalaya-read-message-at-point)
