@@ -211,7 +211,7 @@ given QUERY."
   "Himalaya envelope listing mode."
   (setq tabulated-list-format
 	(vector
-         (list "ID" 5 nil :right-align t)
+         (list "ID" 6 nil :right-align t)
          (list "Flags" 6 nil)
          (list "Subject" himalaya-subject-width nil)
          (list "From" himalaya-from-width nil)
